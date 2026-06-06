@@ -9,5 +9,13 @@ data = response.json()
 
 df = pd.DataFrame(data["value"])
 
-plt.plot(df["AveragePurchasePrice_1"])
+df["Year"] = df["Periods"].str[:4]
+
+plt.figure(figsize=(10, 6))
+plt.plot(df["Year"], df["AveragePurchasePrice_1"])
+plt.title("Average House Prices in the Netherlands")
+plt.xlabel("Year")
+plt.ylabel("Average Purchase Price (€)")
+plt.xticks(rotation=45)
+plt.tight_layout()
 plt.savefig("charts/house_prices.png")
